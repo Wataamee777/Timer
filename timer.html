@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025年カウントダウンタイマー</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #282c34;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>2025年1月1日までのカウントダウン</h1>
+  <div id="countdown">計算中...</div>
+  <script>
+    function updateCountdown() {
+      const targetDate = new Date("2025-01-01T00:00:00");
+      const now = new Date();
+      const timeRemaining = targetDate - now;
+
+      if (timeRemaining <= 0) {
+        document.getElementById("countdown").innerText = "明けましておめでとうございます！";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
